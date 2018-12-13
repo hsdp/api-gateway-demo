@@ -1,6 +1,6 @@
 ## Overview
 
-This repo demonstrates how its possible to implement a application on HSDP
+This repo demonstrates how its possible to implement an application on HSDP
 using an API gateway.  Several new features of HSDP are used to make this
 a fully functional demo.  The most important new feature is container to
 container networking with internal DNS for service discovery.  This allows 
