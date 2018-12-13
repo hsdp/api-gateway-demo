@@ -1,0 +1,15 @@
+---
+defaults: &defaults
+  disk_quota: 512M
+  memory: 256M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((guids_api))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((guids_api_docker_image))
+  routes:
+  - route: ((guids_api)).((external_domain))

@@ -1,0 +1,18 @@
+---
+defaults: &defaults
+  stack: cflinuxfs3
+  disk_quota: 512M
+  memory: 512M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((users_api))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - https://github.com/cloudfoundry/python-buildpack.git
+  routes:
+  - route: ((users_api)).((external_domain))
+  services:
+  - ((postgres_instance_name))

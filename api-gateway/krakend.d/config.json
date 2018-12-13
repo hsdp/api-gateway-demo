@@ -1,0 +1,161 @@
+{
+  "version": 2,
+  "extra_config": {},
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "api-gateway",
+  "endpoints": [
+    {
+      "endpoint": "/user/comments/{username}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "extra_config": {
+        "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+          "maxRate": 100,
+          "clientMaxRate": 0,
+          "strategy": "ip"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/user/comments/{username}",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://users-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/users",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "extra_config": {
+        "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+          "maxRate": 100,
+          "clientMaxRate": 0,
+          "strategy": "ip"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/users",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://users-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/guids",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "extra_config": {
+        "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+          "maxRate": 1,
+          "clientMaxRate": 0,
+          "strategy": "ip"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://guids-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/products",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/products",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://product-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/product/{guid}",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/product/{guid}",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://product-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/random/product",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/random/product",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://product-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/random/user",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/random/user",
+          "encoding": "no-op",
+          "extra_config": {},
+          "sd": "static",
+          "host": [
+            "http://users-api.apps.internal:8080"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}

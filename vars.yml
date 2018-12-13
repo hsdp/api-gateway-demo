@@ -1,0 +1,18 @@
+instances: 2
+
+api_gateway: api-gateway
+users_api: users-api
+guids_api: guids-api
+product_api: product-api
+
+api_gateway_docker_image: epoelke/api-gateway:demo
+users_api_docker_image: epoelke/users-api:demo
+guids_api_docker_image: epoelke/guids-api:demo
+product_api_docker_image: epoelke/product-api:demo
+
+external_domain: cloud.phsdp.com
+internal_domain: apps.internal
+
+s3_instance_name: s3
+redis_instance_name: redis
+postgres_instance_name: postgres

@@ -1,0 +1,50 @@
+---
+defaults: &defaults
+  disk_quota: 512M
+  memory: 512M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((api_gateway))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((api_gateway_docker_image))
+  memory: 1G
+  routes:
+  - route: ((api_gateway)).((external_domain))
+  health-check-type: port
+  health-check-http-endpoint: null
+
+- name: ((users_api))
+  <<: *defaults
+  disk_quota: 2G
+  instances: ((instances))
+  docker:
+    image: ((users_api_docker_image))
+  routes:
+  - route: ((users_api)).((internal_domain))
+  services:
+  - ((postgres_instance_name))
+
+- name: ((guids_api))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((guids_api_docker_image))
+  routes:
+  - route: ((guids_api)).((internal_domain))
+
+- name: ((product_api))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((product_api_docker_image))
+  routes:
+  - route: ((product_api)).((internal_domain))
+  services:
+  - ((s3_instance_name))
+  - ((redis_instance_name))
+  env:
+    CONFIG_ENV: production

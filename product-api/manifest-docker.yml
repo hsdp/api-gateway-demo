@@ -1,0 +1,20 @@
+---
+defaults: &defaults
+  disk_quota: 512M
+  memory: 256M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((product_api))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((product_api_docker_image))
+  routes:
+  - route: ((product_api)).((external_domain))
+  services:
+  - ((s3_service_instance))
+  - ((redis_service_instance))
+  env:
+    CONFIG_ENV: CloudFoundry

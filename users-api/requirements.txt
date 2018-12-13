@@ -1,0 +1,11 @@
+click==6.7
+Flask>=1.0.2
+SQLAlchemy==1.2.14
+psycopg2-binary==2.7.6.1
+itsdangerous==0.24
+Jinja2>=2.10
+MarkupSafe==1.0
+Werkzeug==0.14.1
+RandomWords==0.2.1
+uWSGI==2.0.17.1
+requests==2.19.1

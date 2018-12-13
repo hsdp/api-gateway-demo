@@ -1,0 +1,6 @@
+Dockerfile
+manifest*
+.dockerignore
+__pycache__
+*.pyc
+*.md

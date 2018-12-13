@@ -1,0 +1,55 @@
+---
+defaults: &defaults
+  stack: cflinuxfs3
+  disk_quota: 512M
+  memory: 256M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((api_gateway))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - binary_buildpack
+  memory: 1G
+  routes:
+  - route: ((api_gateway)).((external_domain))
+  health-check-type: port
+  health-check-http-endpoint: null
+  command: ./entrypoint.sh
+  path: ./api-gateway
+
+- name: ((users_api))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - https://github.com/cloudfoundry/python-buildpack.git
+  routes:
+  - route: ((users_api)).((internal_domain))
+  services:
+  - ((postgres_instance_name))
+  path: ./users-api
+
+- name: ((guids_api))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - https://github.com/cloudfoundry/python-buildpack.git
+  routes:
+  - route: ((guids_api)).((internal_domain))
+  path: ./guids-api
+
+- name: ((product_api))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - https://github.com/cloudfoundry/python-buildpack.git
+  routes:
+  - route: ((product_api)).((internal_domain))
+  path: ./product-api
+  services:
+  - ((s3_instance_name))
+  - ((redis_instance_name))
+  env:
+    CONFIG_ENV: production

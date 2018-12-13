@@ -1,0 +1,14 @@
+---
+defaults: &defaults
+  memory: 1G
+  disk_quota: 512M
+
+applications:
+- name: ((api_gateway))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((api_gateway_docker_image))
+  routes:
+  - route: ((api_gateway)).((external_domain))
+  command: ./entrypoint.sh

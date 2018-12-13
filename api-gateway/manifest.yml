@@ -1,0 +1,15 @@
+---
+defaults: &defaults
+  stack: cflinuxfs3
+  disk_quota: 512M
+  memory: 1G
+
+applications:
+- name: ((api_gateway))
+  <<: *defaults
+  instances: ((instances))
+  buildpacks:
+  - binary_buildpack
+  routes:
+  - route: ((api_gateway)).cloud.phsdp.com
+  command: ./entrypoint.sh

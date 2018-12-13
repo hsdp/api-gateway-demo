@@ -1,0 +1,17 @@
+---
+defaults: &defaults
+  disk_quota: 512M
+  memory: 256M
+  health-check-type: http
+  health-check-http-endpoint: /healthcheck
+
+applications:
+- name: ((users_api))
+  <<: *defaults
+  instances: ((instances))
+  docker:
+    image: ((users_api_docker_image))
+  routes:
+  - route: ((users_api)).((external_domain))
+  services:
+  - ((postgres_service_instance))

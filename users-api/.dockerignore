@@ -1,0 +1,7 @@
+manifest*
+runtime.txt
+Procfile
+.cfignore
+__pycache__
+*.pyc
+*.md
