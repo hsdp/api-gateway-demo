@@ -1,15 +1,15 @@
 ## Overview
 
-This repo demonstrates how its possible to implement an application on HSDP
+This repo demonstrates how it's possible to implement an application on HSDP
 using an API gateway.  Several new features of HSDP are used to make this
 a fully functional demo.  The most important new feature is container to
 container networking with internal DNS for service discovery.  This allows 
 for the deployment of completely private services in Cloud Foundry.  Each
 environment also has a special internal DNS domain that private apps are
-deployment into: `apps.internal`.  When applications are deployed to this
-domain they will be unreachable externally or internally.  Its not possible
-to make these apps reachable from outside the environment.  Policies can be
-be defined and applied that allow for internal traffic between applications.
+deployed into: `apps.internal`.  When applications are deployed to this domain
+they will be unreachable externally or internally.  It's not possible to make
+these apps reachable from outside the environment.  Policies can be defined
+and applied that allow for internal traffic between applications.
 
 When communicating via the overlay network internal traffic bypasses the
 gorouter which is typically responsible for load-balancing traffic across
@@ -116,9 +116,9 @@ endpoints to get random product descriptions or user comments.
 **Caveats**
 
 Cloud Foundry does not support the switching of an application life cycle after
-an application is deployed.  What this mean is that if you deploy the demo as
+an application is deployed.  What this means is that if you deploy the demo as
 a buildpack based deployment, you cannot redeploy it as a docker based
-deployment.  You will need to delete all the applications before changed the
+deployment.  You will need to delete all the applications before changing the
 life cycle of the deployment with `cf delete ((app_name))`.
 
 If an application fails to deploy after a successful deployment or if an
