@@ -11,5 +11,5 @@ applications:
   buildpacks:
   - binary_buildpack
   routes:
-  - route: ((api_gateway)).cloud.phsdp.com
+  - route: ((api_gateway)).((external_domain))
   command: ./entrypoint.sh
