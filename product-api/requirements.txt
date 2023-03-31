@@ -1,6 +1,6 @@
 boto3==1.9.4
 Flask==1.0.2
 RandomWords==0.2.1
-redis==3.0.1
+redis==4.4.4
 redis-dump-load==1.1
 uWSGI==2.0.17.1
