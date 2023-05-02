@@ -1,5 +1,5 @@
 boto3==1.9.4
-Flask==1.0.2
+Flask==2.2.5
 RandomWords==0.2.1
 redis==3.0.1
 redis-dump-load==1.1
