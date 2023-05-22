@@ -8,4 +8,4 @@ MarkupSafe==1.0
 Werkzeug==0.14.1
 RandomWords==0.2.1
 uWSGI==2.0.17.1
-requests==2.19.1
+requests==2.31.0
